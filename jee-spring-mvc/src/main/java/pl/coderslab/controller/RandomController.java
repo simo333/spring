@@ -18,12 +18,12 @@ public class RandomController {
         return "Wylosowano liczbę: " + random.nextInt(1, 101);
     }
 
-    @GetMapping("/random/{max:\\d+}")
+    @GetMapping("/random/{min:\\d+}/{max:\\d+}")
     @ResponseBody
-    public String showRandomWithMax(@PathVariable int max) {
+    public String showRandomWithMax(@PathVariable int min, @PathVariable int max) {
         Random r = new Random();
-        int rand = r.nextInt(max) + 1;
-        return String.format("Użytkownik podał wartość %d. Wylosowano liczbę: %d.", max, rand);
+        int rand = r.nextInt(min, max + 1);
+        return String.format("Użytkownik podał wartości %d i %d. Wylosowano liczbę: %d.", min, max, rand);
     }
 
     @GetMapping("/header")
