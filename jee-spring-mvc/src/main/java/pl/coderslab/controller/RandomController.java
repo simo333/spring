@@ -18,7 +18,7 @@ public class RandomController {
         return "Wylosowano liczbę: " + random.nextInt(1, 101);
     }
 
-    @GetMapping("/random/{max}")
+    @GetMapping("/random/{max:\\d+}")
     @ResponseBody
     public String showRandomWithMax(@PathVariable int max) {
         Random r = new Random();
