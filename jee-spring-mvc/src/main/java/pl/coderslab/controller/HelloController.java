@@ -21,7 +21,7 @@ public class HelloController {
 
     @GetMapping("/form")
     public String hello() {
-        return "/index.jsp";
+        return "index";
     }
 
     @PostMapping("/form")
