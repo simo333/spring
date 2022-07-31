@@ -1,10 +1,12 @@
 package pl.coderslab.controller;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalTime;
+
 @Controller
-@RequestMapping("/first")
 public class HelloController {
 
     @GetMapping("/hello")
@@ -28,5 +30,28 @@ public class HelloController {
     @ResponseBody
     public String processForm(@RequestParam String paramName, @RequestParam String paramDate) {
         return paramName + paramDate;
+    }
+
+    @GetMapping("/helloView/{color}/{bgColor}")
+    public String helloView(@PathVariable String bgColor, @PathVariable String color, Model model) {
+        model.addAttribute("bgColor", bgColor);
+        model.addAttribute("color", color);
+        return "home";
+    }
+
+    @GetMapping("/helloView/")
+    public String helloView(Model model) {
+        LocalTime time = LocalTime.now();
+        LocalTime start = LocalTime.of(8,0);
+        LocalTime end = LocalTime.of(20,0);
+        LocalTime nightTime = LocalTime.of(1, 0);
+        if (time.isAfter(start) && time.isBefore(end)) {
+            model.addAttribute("color", "black");
+            model.addAttribute("bgColor", "white");
+        } else {
+            model.addAttribute("color", "white");
+            model.addAttribute("bgColor", "black");
+        }
+        return "home";
     }
 }
