@@ -42,8 +42,8 @@ public class HelloController {
     @GetMapping("/helloView/")
     public String helloView(Model model) {
         LocalTime time = LocalTime.now();
-        LocalTime start = LocalTime.of(8,0);
-        LocalTime end = LocalTime.of(20,0);
+        LocalTime start = LocalTime.of(8, 0);
+        LocalTime end = LocalTime.of(20, 0);
         LocalTime nightTime = LocalTime.of(1, 0);
         if (time.isAfter(start) && time.isBefore(end)) {
             model.addAttribute("color", "black");
