@@ -1,10 +1,12 @@
 package pl.coderslab.model;
 
 public class Product {
+    private Long id;
     private String name;
     private double price;
 
-    public Product(String name, double price) {
+    public Product(Long id, String name, double price) {
+        this.id = id;
         this.name = name;
         this.price = price;
     }
@@ -23,6 +25,14 @@ public class Product {
 
     public void setPrice(double price) {
         this.price = price;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     @Override
