@@ -9,8 +9,6 @@ import pl.coderslab.model.CartItem;
 import pl.coderslab.model.Product;
 import pl.coderslab.model.dao.ProductDao;
 
-import java.util.Random;
-
 @Controller
 public class CartController {
 
@@ -35,7 +33,6 @@ public class CartController {
     public String showCart() {
         return cart.getCartItems().toString();
     }
-
 
 
 }
