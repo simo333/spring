@@ -9,6 +9,9 @@ import pl.coderslab.model.CartItem;
 import pl.coderslab.model.Product;
 import pl.coderslab.model.dao.ProductDao;
 
+import java.util.List;
+import java.util.stream.Stream;
+
 @Controller
 public class CartController {
 
@@ -24,7 +27,12 @@ public class CartController {
     @ResponseBody
     public String addToCart(@PathVariable Long id, @PathVariable Integer quantity) {
         Product product = productDao.getProductById(id);
-        cart.addToCart(new CartItem(quantity, product));
+        List<CartItem> cartItems = cart.getCartItems();
+        CartItem cartItem = cartItems.stream()
+                .filter(c -> c.getProduct().equals(product)).findFirst()
+                .orElse((new CartItem(0, product)));
+        cartItem.setQuantity(cartItem.getQuantity() + quantity);
+        cart.addToCart(cartItem);
         return "addtocart";
     }
 
