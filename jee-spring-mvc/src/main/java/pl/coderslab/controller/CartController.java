@@ -10,9 +10,6 @@ import pl.coderslab.model.Product;
 import pl.coderslab.model.dao.ProductDao;
 
 import java.util.List;
-import java.util.Optional;
-import java.util.stream.DoubleStream;
-import java.util.stream.Stream;
 
 @Controller
 public class CartController {
