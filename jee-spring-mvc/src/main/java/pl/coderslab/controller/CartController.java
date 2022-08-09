@@ -10,6 +10,8 @@ import pl.coderslab.model.Product;
 import pl.coderslab.model.dao.ProductDao;
 
 import java.util.List;
+import java.util.Optional;
+import java.util.stream.DoubleStream;
 import java.util.stream.Stream;
 
 @Controller
@@ -30,16 +32,29 @@ public class CartController {
         List<CartItem> cartItems = cart.getCartItems();
         CartItem cartItem = cartItems.stream()
                 .filter(c -> c.getProduct().equals(product)).findFirst()
-                .orElse((new CartItem(0, product)));
+                .orElse(new CartItem(0, product));
+
         cartItem.setQuantity(cartItem.getQuantity() + quantity);
-        cart.addToCart(cartItem);
+        if (!cartItems.contains(cartItem)) {
+            cart.addToCart(cartItem);
+        }
         return "addtocart";
     }
 
     @RequestMapping("/cart")
     @ResponseBody
     public String showCart() {
-        return cart.getCartItems().toString();
+        List<CartItem> cartItems = cart.getCartItems();
+        int itemsQuantity = cartItems.stream()
+                .mapToInt(CartItem::getQuantity)
+                .sum();
+        Double totalCost = cartItems.stream()
+                .mapToDouble(item -> item.getQuantity() * item.getProduct().getPrice())
+                .sum();
+
+        return new StringBuilder().append("W koszyku jest ").append(cartItems.size()).append(" pozycji.\n")
+                .append("W koszyku jest ").append(itemsQuantity).append(" produktów.\n")
+                .append("Wartość koszyka to: ").append(totalCost).toString();
     }
 
 
