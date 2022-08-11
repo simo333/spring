@@ -1,4 +1,4 @@
-package pl.coderslab.model;
+package pl.coderslab.model.task2_3;
 
 public class CartItem {
     private Integer quantity;

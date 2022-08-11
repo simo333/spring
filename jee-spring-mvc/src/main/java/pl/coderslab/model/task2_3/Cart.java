@@ -1,4 +1,4 @@
-package pl.coderslab.model;
+package pl.coderslab.model.task2_3;
 
 import org.springframework.context.annotation.Scope;
 import org.springframework.context.annotation.ScopedProxyMode;

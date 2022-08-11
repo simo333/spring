@@ -4,10 +4,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
-import pl.coderslab.model.Cart;
-import pl.coderslab.model.CartItem;
-import pl.coderslab.model.Product;
-import pl.coderslab.model.dao.ProductDao;
+import pl.coderslab.model.task2_3.Cart;
+import pl.coderslab.model.task2_3.CartItem;
+import pl.coderslab.model.task2_3.Product;
+import pl.coderslab.model.task2_3.dao.ProductDao;
 
 import java.util.List;
 

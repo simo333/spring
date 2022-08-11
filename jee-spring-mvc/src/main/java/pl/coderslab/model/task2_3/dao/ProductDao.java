@@ -1,7 +1,7 @@
-package pl.coderslab.model.dao;
+package pl.coderslab.model.task2_3.dao;
 
 import org.springframework.stereotype.Component;
-import pl.coderslab.model.Product;
+import pl.coderslab.model.task2_3.Product;
 
 import java.util.ArrayList;
 import java.util.List;
