@@ -16,11 +16,11 @@ import java.nio.charset.StandardCharsets;
 import java.util.List;
 
 @Configuration
-@EnableWebMvc
+//@EnableWebMvc
 @ComponentScan(basePackages = "pl.coderslab")
 public class AppConfig implements WebMvcConfigurer {
 
-    @Override
+/*    @Override
     public void configureMessageConverters(List<HttpMessageConverter<?>> converters) {
         StringHttpMessageConverter stringConverter = new StringHttpMessageConverter();
         stringConverter.setSupportedMediaTypes(List.of(new MediaType("text", "plain", StandardCharsets.UTF_8)));
@@ -37,7 +37,7 @@ public class AppConfig implements WebMvcConfigurer {
     public void configureDefaultServletHandling(
             DefaultServletHandlerConfigurer configurer) {
         configurer.enable();
-    }
+    }*/
 
     @Bean
     public SimpleCustomerLogger logger() {

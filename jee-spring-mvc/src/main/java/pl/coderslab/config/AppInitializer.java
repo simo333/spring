@@ -10,6 +10,7 @@ import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.ServletRegistration;
 
+/*
 public class AppInitializer implements WebApplicationInitializer {
     @Override
     public void onStartup(ServletContext container) throws ServletException {
@@ -29,3 +30,4 @@ public class AppInitializer implements WebApplicationInitializer {
         fr.addMappingForUrlPatterns(null, true, "/*");
     }
 }
+*/
