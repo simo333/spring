@@ -24,9 +24,11 @@ public class MemoryCustomerRepository implements CustomerRepository {
 
     @Override
     public void deleteCustomer(Long id) {
-        customers.stream()
+        Customer customer = customers.stream()
                 .filter(c -> id.equals(c.getId()))
-                .forEach(customers::remove);
+                .findFirst()
+                .orElseThrow(() -> new IllegalArgumentException("No customer found."));
+        customers.remove(customer);
         logger.log();
     }
 
