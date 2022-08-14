@@ -1,6 +1,5 @@
 package pl.simo333.task1_5;
 
-import org.springframework.context.annotation.Primary;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Component;
 import pl.simo333.task1_2.CustomerLogger;
@@ -9,7 +8,6 @@ import javax.sql.DataSource;
 import java.time.LocalDateTime;
 
 @Component
-@Primary
 public class DBCustomerLogger implements CustomerLogger {
 
     private static final String INSERT_LOG_QUERY = "INSERT INTO logs (DESCRIPTION, TIMESTAMP) VALUES (?, ?);";

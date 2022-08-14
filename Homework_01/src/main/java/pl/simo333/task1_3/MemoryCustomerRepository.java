@@ -2,6 +2,7 @@ package pl.simo333.task1_3;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 import pl.simo333.task1_1.Customer;
 import pl.simo333.task1_2.CustomerLogger;
@@ -15,7 +16,7 @@ public class MemoryCustomerRepository implements CustomerRepository {
     private final CustomerLogger logger;
 
     @Autowired
-    public MemoryCustomerRepository(CustomerLogger logger) {
+    public MemoryCustomerRepository(@Qualifier("DBCustomerLogger") CustomerLogger logger) {
         this.customers = new ArrayList<>();
         this.logger = logger;
     }
