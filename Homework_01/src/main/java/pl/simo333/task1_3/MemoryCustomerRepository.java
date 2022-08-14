@@ -2,12 +2,14 @@ package pl.simo333.task1_3;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 import pl.simo333.task1_1.Customer;
 import pl.simo333.task1_2.CustomerLogger;
 
 import java.util.ArrayList;
 import java.util.List;
 
+@Component
 public class MemoryCustomerRepository implements CustomerRepository {
     private final List<Customer> customers;
     private final CustomerLogger logger;
