@@ -16,7 +16,8 @@ public class HelloController {
     @GetMapping("/workers")
     public String workersAction(HttpServletRequest request) {
         int random = new Random().nextInt(1, 31);
-        try (Stream<String> lines = Files.lines(Paths.get("Workers.txt"))) {
+        System.out.println("Found random: " + random);
+        try (Stream<String> lines = Files.lines(Paths.get("C:\\Users\\SimoPc\\IdeaProjects\\spring-configurations\\spring-configurations\\Homework_02\\Workers.txt"))) {
             lines.filter(line -> line.contains(String.valueOf(random)))
                     .forEach(line -> request.setAttribute("worker", line));
         } catch (IOException e) {
