@@ -3,12 +3,16 @@ package pl.simo333.task4.task2_3;
 public class Product {
     private Long id;
     private String name;
-    private double price;
+    private Double price;
 
-    public Product(Long id, String name, double price) {
-        this.id = id;
+    private static Long lastId = 1L;
+
+
+    public Product(String name, double price) {
+        this.id = lastId;
         this.name = name;
         this.price = price;
+        lastId++;
     }
 
     public String getName() {
@@ -19,12 +23,12 @@ public class Product {
         this.name = name;
     }
 
-    public double getPrice() {
+    public Double getPrice() {
         return price;
     }
 
-    public void setPrice(double price) {
-        this.price = price;
+    public Double setPrice(double price) {
+        return this.price;
     }
 
     public Long getId() {
@@ -35,10 +39,15 @@ public class Product {
         this.id = id;
     }
 
+    public static Long getLastId() {
+        return lastId;
+    }
+
     @Override
     public String toString() {
         return "Product{" +
-                "name='" + name + '\'' +
+                "id=" + id +
+                ", name='" + name + '\'' +
                 ", price=" + price +
                 '}';
     }

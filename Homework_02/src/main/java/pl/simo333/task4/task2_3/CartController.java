@@ -1,9 +1,7 @@
 package pl.simo333.task4.task2_3;
 
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 import pl.simo333.task4.task2_3.dao.ProductDao;
 
 import javax.servlet.http.HttpServletRequest;
@@ -46,9 +44,46 @@ public class CartController {
                 .mapToDouble(item -> item.getQuantity() * item.getProduct().getPrice())
                 .sum();
 
+        request.setAttribute("cart", cart.getCartItems());
         request.setAttribute("cartItemsQuantity", cartItems.size());
         request.setAttribute("cartProductQuantity", itemsQuantity);
         request.setAttribute("cartValue", totalValue);
         return "task4/cart";
+    }
+
+    @GetMapping("/add-product")
+    public String addProduct() {
+        return "task4/addProduct";
+    }
+
+    @PostMapping("/add-product")
+    public String addProduct(@RequestParam String name, @RequestParam Double price) {
+
+        Product product = new Product(name, price);
+        System.out.println(product);
+        productDao.addProduct(product);
+        return "task4/addProduct";
+    }
+
+    @GetMapping("/cart-items/{id}/increase-quantity")
+    public String increaseQuantity(@PathVariable Long id) {
+        cart.getCartItems().stream()
+                .filter(cartItem -> id.equals(cartItem.getProduct().getId()))
+                .forEach(cartItem -> cartItem.setQuantity(cartItem.getQuantity() + 1));
+        return "redirect:/cart";
+    }
+
+    @GetMapping("/cart-items/{id}/decrease-quantity")
+    public String deceaseQuantity(@PathVariable Long id) {
+        cart.getCartItems().stream()
+                .filter(cartItem -> id.equals(cartItem.getProduct().getId()))
+                .forEach(cartItem -> cartItem.setQuantity(cartItem.getQuantity() - 1));
+        return "redirect:/cart";
+    }
+
+    @GetMapping("cart-items/{id}")
+    public String deleteCartItem(@PathVariable Long id) {
+        cart.getCartItems().removeIf(cartItem -> id.equals(cartItem.getProduct().getId()));
+        return "redirect:/cart";
     }
 }

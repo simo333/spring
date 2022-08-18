@@ -19,7 +19,7 @@ public class ProductDao {
     public ProductDao() {
         Random rand = new Random();
         for (long i = 1L; i <= 19; i++) {
-            addProduct(new Product(i, "prod" + rand.nextInt(10), rand.nextDouble()));
+            addProduct(new Product("prod" + rand.nextInt(10), rand.nextDouble()));
         }
     }
 
@@ -30,7 +30,7 @@ public class ProductDao {
     public Product getProductById(Long id) {
         return products.stream()
                 .filter(p -> Objects.equals(p.getId(), id)).findFirst()
-                .orElseThrow();
+                .orElseThrow(() -> new IllegalArgumentException("Product of given id not found. For id: " + id));
     }
 
 }

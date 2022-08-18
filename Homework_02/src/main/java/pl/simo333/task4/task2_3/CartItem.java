@@ -14,6 +14,10 @@ public class CartItem {
     }
 
     public void setQuantity(Integer quantity) {
+        if(quantity < 1) {
+            this.quantity = 1;
+            return;
+        }
         this.quantity = quantity;
     }
 
