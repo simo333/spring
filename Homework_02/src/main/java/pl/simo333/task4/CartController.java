@@ -1,8 +1,8 @@
-package pl.simo333.task4.task2_3;
+package pl.simo333.task4;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
-import pl.simo333.task4.task2_3.dao.ProductDao;
+import pl.simo333.task4.dao.ProductDao;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;

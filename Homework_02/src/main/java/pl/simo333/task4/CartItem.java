@@ -1,4 +1,4 @@
-package pl.simo333.task4.task2_3;
+package pl.simo333.task4;
 
 public class CartItem {
     private Integer quantity;

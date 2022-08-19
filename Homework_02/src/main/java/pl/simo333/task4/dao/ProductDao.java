@@ -1,7 +1,7 @@
-package pl.simo333.task4.task2_3.dao;
+package pl.simo333.task4.dao;
 
 import org.springframework.stereotype.Component;
-import pl.simo333.task4.task2_3.Product;
+import pl.simo333.task4.Product;
 
 import java.util.ArrayList;
 import java.util.List;

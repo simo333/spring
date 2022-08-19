@@ -1,4 +1,4 @@
-package pl.simo333.task4.task2_3;
+package pl.simo333.task4;
 
 import org.springframework.context.annotation.Scope;
 import org.springframework.context.annotation.ScopedProxyMode;
