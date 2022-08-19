@@ -1,11 +1,13 @@
 package pl.simo333;
 
+import org.springframework.stereotype.Component;
 import pl.simo333.model.Hero;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+@Component
 public class HeroComponent {
     private List<Hero> heroList = new ArrayList<>();
 
