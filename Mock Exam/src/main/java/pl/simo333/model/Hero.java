@@ -2,6 +2,7 @@ package pl.simo333.model;
 
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.util.Comparator;
 
 public class Hero implements Comparable<Hero>, Serializable {
     private String name;
@@ -51,13 +52,11 @@ public class Hero implements Comparable<Hero>, Serializable {
         this.phone = phone;
     }
 
-    @Override
-    public int compareTo(Hero o) {
-        if(this.power == null || o.power == null) {
-            throw new IllegalArgumentException("'Hero.power' is null.");
-        }
-        return Long.compare(this.power, o.power);
+    public int compareTo(Hero that) {
+        return Comparator.comparing(Hero::getPower, Comparator
+                .nullsFirst(Long::compare)).compare(this, that);
     }
+
 
     @Override
     public String toString() {

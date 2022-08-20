@@ -13,8 +13,8 @@ public class MainHero {
                 new Hero("Robo-Cop", 30L, LocalDate.of(1950, 3, 12), "123456789"),
                 new Hero("Hulk", 300L, LocalDate.of(1960, 6, 26), "123456789"),
                 new Hero("Iron Man", 140L, LocalDate.of(2000, 1, 15), "123456789"),
-                new Hero("Thor", 175L, LocalDate.of(2010, 4, 25), "123456789")
-//                new Hero("T", null, LocalDate.of(2010, 4, 25), "123456789")
+                new Hero("Thor", 175L, LocalDate.of(2010, 4, 25), "123456789"),
+                new Hero("T", null, LocalDate.of(2010, 4, 25), "123456789")
         ));
 
         heroes.stream()
@@ -31,6 +31,7 @@ public class MainHero {
         heroes.stream()
                 .map(Hero::getName)
                 .forEach(System.out::println);
+        System.out.println();
 
         heroes.stream()
                 .peek(hero -> hero.setName(hero.getName().substring(0, 1).toUpperCase()))
