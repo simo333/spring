@@ -31,7 +31,9 @@ public class PublisherDao {
         entityManager.merge(publisher);
     }
 
-    public void delete(long publisher) {
+
+    //TODO handle removing publishers with books enrolled
+    public void delete(Publisher publisher) {
         entityManager.remove(entityManager.contains(publisher) ?
                 publisher : entityManager.merge(publisher));
     }

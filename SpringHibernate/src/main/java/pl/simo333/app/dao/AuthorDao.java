@@ -31,7 +31,7 @@ public class AuthorDao {
         entityManager.merge(author);
     }
 
-    public void delete(long author) {
+    public void delete(Author author) {
         entityManager.remove(entityManager.contains(author) ?
                 author : entityManager.merge(author));
     }

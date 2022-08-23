@@ -34,6 +34,7 @@ public class PublisherService {
     }
 
     public void delete(long id) {
-        publisherDao.delete(id);
+        Publisher publisher = findById(id);
+        publisherDao.delete(publisher);
     }
 }
