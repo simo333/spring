@@ -57,7 +57,7 @@ public class BookController {
         bookService.findAll().forEach(b -> logger.info(b.toString()));
     }
 
-     @RequestMapping("/all/{rating}")
+    @RequestMapping("/all/{rating}")
     public void findAllByRating(@PathVariable double rating) {
         bookService.findAllByRating(rating).forEach(b -> logger.info(b.toString()));
     }
@@ -70,6 +70,11 @@ public class BookController {
     @RequestMapping("/with-publisher/{id}")
     public void findAllWithPublisherId(@PathVariable Long id) {
         bookService.findAllWithPublisherId(id).forEach(System.out::println);
+    }
+
+    @RequestMapping("/with-author/{id}")
+    public void findAllWithAuthorId(@PathVariable Long id) {
+        bookService.findAllWithAuthorId(id).forEach(System.out::println);
     }
 
     @RequestMapping("/update/{id}/{title}")

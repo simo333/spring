@@ -52,4 +52,10 @@ public class BookDao {
                 .setParameter("publisherId", publisherId)
                 .getResultList();
     }
+
+    public List<Book> findAllWithAuthorId(long authorId) {
+        return entityManager.createQuery("SELECT b FROM Book b JOIN b.authors a WHERE a.id = :authorId", Book.class)
+                .setParameter("authorId", authorId)
+                .getResultList();
+    }
 }
