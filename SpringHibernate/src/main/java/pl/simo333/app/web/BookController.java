@@ -67,6 +67,11 @@ public class BookController {
         bookService.findAllWithPublisher().forEach(System.out::println);
     }
 
+    @RequestMapping("/with-publisher/{id}")
+    public void findAllWithPublisherId(@PathVariable Long id) {
+        bookService.findAllWithPublisherId(id).forEach(System.out::println);
+    }
+
     @RequestMapping("/update/{id}/{title}")
     public String updateBook(@PathVariable long id, @PathVariable String title) {
         Book book = bookService.updateTitle(id, title);
