@@ -32,6 +32,10 @@ public class BookService {
         return bookDao.findAllByRating(rating);
     }
 
+    public List<Book> findAllWithPublisher() {
+        return bookDao.findAllWithPublisher();
+    }
+
     public Book findById(long id) {
         return bookDao.findById(id);
     }

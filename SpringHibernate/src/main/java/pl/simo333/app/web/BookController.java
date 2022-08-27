@@ -4,6 +4,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import pl.simo333.app.domain.Author;
 import pl.simo333.app.domain.Book;
@@ -59,6 +60,11 @@ public class BookController {
      @RequestMapping("/all/{rating}")
     public void findAllByRating(@PathVariable double rating) {
         bookService.findAllByRating(rating).forEach(b -> logger.info(b.toString()));
+    }
+
+    @RequestMapping("/with-publisher")
+    public void findAllWithPublisher() {
+        bookService.findAllWithPublisher().forEach(System.out::println);
     }
 
     @RequestMapping("/update/{id}/{title}")

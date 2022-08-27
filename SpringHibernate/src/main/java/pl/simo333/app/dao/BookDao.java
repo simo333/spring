@@ -41,4 +41,9 @@ public class BookDao {
         entityManager.remove(entityManager.contains(book) ?
                 book : entityManager.merge(book));
     }
+
+    public List<Book> findAllWithPublisher() {
+        return entityManager.createQuery("SELECT b FROM Book b WHERE b.publisher IS NOT NULL", Book.class)
+                .getResultList();
+    }
 }
