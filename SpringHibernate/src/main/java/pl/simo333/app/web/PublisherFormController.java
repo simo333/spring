@@ -43,13 +43,13 @@ public class PublisherFormController {
     }
 
     @GetMapping("/list")
-    public String listBooks(Model model) {
+    public String listPublishers(Model model) {
         model.addAttribute("publishers", publisherService.findAll());
         return "list/publisher";
     }
-
+//TODO delete when book is enrolled
     @GetMapping("/delete/{id}")
-    public String deleteBook(@PathVariable Long id) {
+    public String deletePublisher(@PathVariable Long id) {
         publisherService.delete(id);
         return "redirect:/publisherForm/list";
     }
