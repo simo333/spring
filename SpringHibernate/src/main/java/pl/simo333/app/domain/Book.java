@@ -2,6 +2,7 @@ package pl.simo333.app.domain;
 
 import javax.persistence.*;
 import java.util.HashSet;
+import java.util.Objects;
 import java.util.Set;
 
 @Entity
@@ -14,7 +15,7 @@ public class Book {
     private String title;
     private double rating;
     private String description;
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     private Publisher publisher;
     @ManyToMany
     @JoinTable(name = "book_authors")
@@ -86,7 +87,19 @@ public class Book {
                 ", title='" + title + '\'' +
                 ", rating=" + rating +
                 ", description='" + description + '\'' +
-                ", publisher=" + publisher +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Book book = (Book) o;
+        return id.equals(book.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id);
     }
 }

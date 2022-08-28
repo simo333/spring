@@ -24,7 +24,7 @@
 </table>
 <br>
 <hr>
-<a href="<c:url value="/publisherForm/form"/>">Add book</a>
+<a href="<c:url value="/publisherForm/form"/>">Add publisher</a>
 
 </body>
 </html>

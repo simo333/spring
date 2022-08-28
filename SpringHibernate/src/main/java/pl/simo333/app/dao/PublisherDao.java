@@ -1,6 +1,7 @@
 package pl.simo333.app.dao;
 
 import org.springframework.stereotype.Repository;
+import pl.simo333.app.domain.Book;
 import pl.simo333.app.domain.Publisher;
 
 import javax.persistence.EntityManager;
@@ -34,6 +35,14 @@ public class PublisherDao {
 
     //TODO handle removing publishers with books enrolled
     public void delete(Publisher publisher) {
+        List<Book> publisherBooks = entityManager.createQuery("SELECT b FROM Book b WHERE b.publisher.id = :publisherId", Book.class)
+                .setParameter("publisherId", publisher.getId())
+                .getResultList();
+        publisherBooks.forEach(book -> {
+            book.setPublisher(null);
+            entityManager.merge(book);
+        });
+
         entityManager.remove(entityManager.contains(publisher) ?
                 publisher : entityManager.merge(publisher));
     }

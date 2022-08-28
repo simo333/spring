@@ -1,6 +1,8 @@
 package pl.simo333.app.domain;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "publishers")
@@ -10,6 +12,16 @@ public class Publisher {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
+    @OneToMany(
+            mappedBy = "publisher",
+            cascade = CascadeType.ALL
+    )
+    private List<Book> books = new ArrayList<>();
+
+    public void addBook(Book book) {
+        books.add(book);
+        book.setPublisher(this);
+    }
 
     public Long getId() {
         return id;
