@@ -40,7 +40,6 @@ public class PublisherDao {
                 .getResultList();
         publisherBooks.forEach(book -> {
             book.setPublisher(null);
-            entityManager.merge(book);
         });
 
         entityManager.remove(entityManager.contains(publisher) ?

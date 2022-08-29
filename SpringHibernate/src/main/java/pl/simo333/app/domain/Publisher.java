@@ -13,8 +13,7 @@ public class Publisher {
     private Long id;
     private String name;
     @OneToMany(
-            mappedBy = "publisher",
-            cascade = CascadeType.ALL
+            mappedBy = "publisher"
     )
     private List<Book> books = new ArrayList<>();
 
