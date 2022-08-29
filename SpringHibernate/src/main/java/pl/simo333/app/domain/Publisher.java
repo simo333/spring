@@ -12,9 +12,7 @@ public class Publisher {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
-    @OneToMany(
-            mappedBy = "publisher"
-    )
+    @OneToMany(mappedBy = "publisher")
     private List<Book> books = new ArrayList<>();
 
     public void addBook(Book book) {

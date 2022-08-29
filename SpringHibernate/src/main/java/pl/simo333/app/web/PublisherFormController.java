@@ -47,7 +47,7 @@ public class PublisherFormController {
         model.addAttribute("publishers", publisherService.findAll());
         return "list/publisher";
     }
-//TODO delete when book is enrolled
+
     @GetMapping("/delete/{id}")
     public String deletePublisher(@PathVariable Long id) {
         publisherService.delete(id);

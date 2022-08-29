@@ -15,7 +15,7 @@ public class Book {
     private String title;
     private double rating;
     private String description;
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     private Publisher publisher;
     @ManyToMany
     @JoinTable(name = "book_authors")
@@ -87,6 +87,7 @@ public class Book {
                 ", title='" + title + '\'' +
                 ", rating=" + rating +
                 ", description='" + description + '\'' +
+                ", publisher=" + publisher +
                 '}';
     }
 

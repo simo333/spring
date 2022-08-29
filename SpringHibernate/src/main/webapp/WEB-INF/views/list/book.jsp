@@ -11,6 +11,7 @@
         <th>Title</th>
         <th>Rating</th>
         <th>Description</th>
+        <th>Publisher</th>
         <th>Actions</th>
     </tr>
 
@@ -19,6 +20,7 @@
             <td><c:out value="${b.title}"/></td>
             <td><c:out value="${b.rating}"/></td>
             <td><c:out value="${b.description}"/></td>
+            <td><c:out value="${b.publisher.name}"/></td>
             <td><a href="<c:url value="/bookForm/delete/${b.id}"/>" onclick="confirm('Are you sure to delete: ${b.title}?')">DELETE</a>
                 <a href="<c:url value="/bookForm/edit/${b.id}"/>">EDIT</a>
             </td>
