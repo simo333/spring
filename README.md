@@ -1,8 +1,14 @@
-# Spring Basics
+# Spring:
 
-### Learning various ways to configure Spring context:
+### Various ways to configure Spring context:
 * xml files
 * java files
 * autowiring
 
-### Learning Spring MVC
+### Spring MVC
+
+### Spring and Hibernate
+* Entities
+* DB Relations
+* JPQL
+* Forms binding
