@@ -1,4 +1,4 @@
-# Spring:
+# Spring Framework:
 
 ### Various ways to configure Spring context:
 * xml files
