@@ -5,9 +5,14 @@
 * java files
 * autowiring
 
-### Spring MVC
+### Spring MVC:
+* Repositories and Services
+* Controllers
+* Params
+* Views
+* Session and Cookies
 
-### Spring and Hibernate
+### Spring and Hibernate:
 * Entities
 * DB Relations
 * JPQL
