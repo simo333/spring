@@ -33,16 +33,11 @@ public class PublisherDao {
     }
 
 
-    //TODO handle removing publishers with books enrolled
     public void delete(Publisher publisher) {
-        List<Book> publisherBooks = entityManager.createQuery("SELECT b FROM Book b WHERE b.publisher.id = :publisherId", Book.class)
-                .setParameter("publisherId", publisher.getId())
-                .getResultList();
-        publisherBooks.forEach(book -> {
-            book.setPublisher(null);
-        });
+        Publisher attached = entityManager.merge(publisher);
+        attached.getBooks().forEach(b -> b.setPublisher(null));
 
-        entityManager.remove(entityManager.contains(publisher) ?
-                publisher : entityManager.merge(publisher));
+        entityManager.remove(entityManager.contains(attached) ?
+                attached : entityManager.merge(attached));
     }
 }
