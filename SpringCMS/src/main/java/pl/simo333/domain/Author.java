@@ -1,9 +1,8 @@
 package pl.simo333.domain;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 @Entity
@@ -13,6 +12,15 @@ public class Author {
     private Long id;
     private String firstName;
     private String lastName;
+    @OneToMany(mappedBy = "author")
+    private List<Article> articles = new ArrayList<>();
+
+    public void addArticle(Article article) {
+        articles.add(article);
+    }
+    public void removeArticle(Article article) {
+        articles.remove(article);
+    }
 
     public Long getId() {
         return id;
@@ -36,6 +44,14 @@ public class Author {
 
     public void setLastName(String lastName) {
         this.lastName = lastName;
+    }
+
+    public List<Article> getArticles() {
+        return articles;
+    }
+
+    public void setArticles(List<Article> articles) {
+        this.articles = articles;
     }
 
     @Override

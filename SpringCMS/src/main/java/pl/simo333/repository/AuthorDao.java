@@ -32,6 +32,9 @@ public class AuthorDao {
     }
 
     public void delete(Author author) {
+        Author attached = entityManager.merge(author);
+        attached.getArticles().forEach(article -> article.setAuthor(null));
+
         entityManager.remove(entityManager.contains(author) ?
                 author : entityManager.merge(author));
     }
