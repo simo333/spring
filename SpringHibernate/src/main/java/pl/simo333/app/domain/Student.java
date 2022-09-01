@@ -1,4 +1,4 @@
-package pl.simo333.app.dao;
+package pl.simo333.app.domain;
 
 import java.util.List;
 

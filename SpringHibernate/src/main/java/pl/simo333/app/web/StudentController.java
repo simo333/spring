@@ -3,7 +3,7 @@ package pl.simo333.app.web;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import pl.simo333.app.dao.Student;
+import pl.simo333.app.domain.Student;
 
 import java.util.Arrays;
 import java.util.List;
