@@ -28,6 +28,11 @@ public class ArticleDao {
         return entityManager.createQuery("SELECT a FROM Article a", Article.class).getResultList();
     }
 
+    public List<Article> findFiveLastAdded() {
+        return entityManager.createQuery("SELECT a FROM Article a ORDER BY a.created ", Article.class)
+                .setMaxResults(5).getResultList();
+    }
+
     public void update(Article article) {
         entityManager.merge(article);
     }

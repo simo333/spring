@@ -21,7 +21,7 @@ public class HomePageController {
 
     @GetMapping
     public String home(Model model) {
-        List<Article> articles = articleDao.findAll();
+        List<Article> articles = articleDao.findFiveLastAdded();
         model.addAttribute("articles", articles);
         return "home";
     }

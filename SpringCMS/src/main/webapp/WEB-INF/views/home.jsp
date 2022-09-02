@@ -19,9 +19,9 @@
             <td>${article.id}</td>
             <td>${article.title}</td>
             <td>${article.content}</td>
-            <td>${article.author.firstName} ${article.author.lastName}</td>
             <td>${article.created}</td>
             <td>${article.updated}</td>
+            <td>${article.author.firstName} ${article.author.lastName}</td>
         </tr>
     </c:forEach>
 </table>
