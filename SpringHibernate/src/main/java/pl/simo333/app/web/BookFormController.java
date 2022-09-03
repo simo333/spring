@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.*;
 import pl.simo333.app.domain.Author;
 import pl.simo333.app.domain.Book;
 import pl.simo333.app.domain.Publisher;
+import pl.simo333.app.repository.BookRepository;
 import pl.simo333.app.service.AuthorService;
 import pl.simo333.app.service.BookService;
 import pl.simo333.app.service.PublisherService;
@@ -21,12 +22,14 @@ public class BookFormController {
     private final BookService bookService;
     private final PublisherService publisherService;
     private final AuthorService authorService;
+    private final BookRepository bookRepository;
 
 
-    public BookFormController(BookService bookService, PublisherService publisherService, AuthorService authorService) {
+    public BookFormController(BookService bookService, PublisherService publisherService, AuthorService authorService, BookRepository bookRepository) {
         this.bookService = bookService;
         this.publisherService = publisherService;
         this.authorService = authorService;
+        this.bookRepository = bookRepository;
     }
 
     @GetMapping("/form")
@@ -50,8 +53,13 @@ public class BookFormController {
     }
 
     @GetMapping("/list")
-    public String listBooks(Model model) {
-        model.addAttribute("books", bookService.findAll());
+    public String listBooks(@RequestParam(name = "title", required = false) String titleLike,
+                            Model model) {
+        if(titleLike != null) {
+            model.addAttribute("books", bookRepository.findAllByTitleContains(titleLike));
+        } else {
+            model.addAttribute("books", bookService.findAll());
+        }
         return "list/book";
     }
 

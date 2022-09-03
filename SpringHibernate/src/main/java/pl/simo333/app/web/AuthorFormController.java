@@ -6,6 +6,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import pl.simo333.app.domain.Author;
 import pl.simo333.app.domain.Book;
+import pl.simo333.app.repository.AuthorRepository;
 import pl.simo333.app.service.AuthorService;
 import pl.simo333.app.service.BookService;
 
@@ -18,10 +19,12 @@ public class AuthorFormController {
 
     private final AuthorService authorService;
     private final BookService bookService;
+    private final AuthorRepository authorRepository;
 
-    public AuthorFormController(AuthorService authorService, BookService bookService) {
+    public AuthorFormController(AuthorService authorService, BookService bookService, AuthorRepository authorRepository) {
         this.authorService = authorService;
         this.bookService = bookService;
+        this.authorRepository = authorRepository;
     }
 
     @GetMapping("/form")
@@ -30,9 +33,15 @@ public class AuthorFormController {
         return "form/author";
     }
 
+
     @GetMapping("/list")
-    public String listBooks(Model model) {
-        model.addAttribute("authors", authorService.findAll());
+    public String listBooks(@RequestParam(name = "lastName", required = false) String lastName,
+                            Model model) {
+        if(lastName != null) {
+            model.addAttribute("authors", authorRepository.findAllByLastName(lastName));
+        } else {
+            model.addAttribute("authors", authorService.findAll());
+        }
         return "list/author";
     }
 

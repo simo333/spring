@@ -6,6 +6,10 @@
 </head>
 <body>
 <jsp:include page="/WEB-INF/views/menu.jsp"/>
+<form>
+    <input type="text" name="title">
+    <button type="submit">Search</button>
+</form>
 <table>
     <tr>
         <th>Title</th>
