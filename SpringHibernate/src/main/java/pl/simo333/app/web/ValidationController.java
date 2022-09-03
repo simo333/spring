@@ -3,9 +3,10 @@ package pl.simo333.app.web;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import pl.simo333.app.domain.Author;
 import pl.simo333.app.domain.Book;
 
 import javax.validation.ConstraintViolation;
@@ -23,15 +24,26 @@ public class ValidationController {
         this.validator = validator;
     }
 
-    @GetMapping
-    @ResponseBody
-    public String validate() {
+    @GetMapping("/book")
+    public String validateBook(Model model) {
         Book book = new Book();
         Set<ConstraintViolation<Book>> violations = validator.validate(book);
-        if(violations.isEmpty()) {
-            return "valid";
+        if (violations.isEmpty()) {
+            model.addAttribute("violations", "Brak błędów");
         }
         violations.forEach(v -> logger.info("{} {}", v.getPropertyPath(), v.getMessage()));
-        return "invalid";
+        model.addAttribute("violations", violations);
+        return "validator";
+    }
+    @GetMapping("/author")
+    public String validateAuthor(Model model) {
+        Author author = new Author();
+        Set<ConstraintViolation<Author>> violations = validator.validate(author);
+        if (violations.isEmpty()) {
+            model.addAttribute("violations", "Brak błędów");
+        }
+        violations.forEach(v -> logger.info("{} {}", v.getPropertyPath(), v.getMessage()));
+        model.addAttribute("violations", violations);
+        return "validator";
     }
 }
