@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import pl.simo333.app.domain.Author;
 import pl.simo333.app.domain.Book;
+import pl.simo333.app.domain.Publisher;
 
 import javax.validation.ConstraintViolation;
 import javax.validation.Validator;
@@ -39,6 +40,18 @@ public class ValidationController {
     public String validateAuthor(Model model) {
         Author author = new Author();
         Set<ConstraintViolation<Author>> violations = validator.validate(author);
+        if (violations.isEmpty()) {
+            model.addAttribute("violations", "Brak błędów");
+        }
+        violations.forEach(v -> logger.info("{} {}", v.getPropertyPath(), v.getMessage()));
+        model.addAttribute("violations", violations);
+        return "validator";
+    }
+
+    @GetMapping("/publisher")
+    public String validatePublisher(Model model) {
+        Publisher publisher = new Publisher();
+        Set<ConstraintViolation<Publisher>> violations = validator.validate(publisher);
         if (violations.isEmpty()) {
             model.addAttribute("violations", "Brak błędów");
         }
