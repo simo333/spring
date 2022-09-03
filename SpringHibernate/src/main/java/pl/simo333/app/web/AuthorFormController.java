@@ -2,12 +2,14 @@ package pl.simo333.app.web;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import pl.simo333.app.domain.Author;
 import pl.simo333.app.domain.Book;
 import pl.simo333.app.service.AuthorService;
 import pl.simo333.app.service.BookService;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @Controller
@@ -41,7 +43,10 @@ public class AuthorFormController {
     }
 
     @PostMapping("/form")
-    public String handleForm(Author author) {
+    public String handleForm(@Valid Author author, BindingResult bindingResult) {
+        if(bindingResult.hasErrors()) {
+            return "form/author";
+        }
         authorService.saveAuthor(author);
         return "redirect:/authorForm/list";
     }

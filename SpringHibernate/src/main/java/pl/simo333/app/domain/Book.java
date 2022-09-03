@@ -3,7 +3,10 @@ package pl.simo333.app.domain;
 import org.hibernate.validator.constraints.Range;
 
 import javax.persistence.*;
-import javax.validation.constraints.*;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
@@ -85,7 +88,9 @@ public class Book {
         return authors;
     }
 
-    public void setAuthors(Set<Author> authors) {this.authors = authors;}
+    public void setAuthors(Set<Author> authors) {
+        this.authors = authors;
+    }
 
     public void addAuthor(Author author) {
         authors.add(author);

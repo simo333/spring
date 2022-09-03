@@ -5,8 +5,6 @@ import org.hibernate.validator.constraints.pl.REGON;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
-import java.util.ArrayList;
-import java.util.List;
 
 @Entity
 @Table(name = "publishers")
