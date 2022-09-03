@@ -3,6 +3,7 @@ package pl.simo333.app.service;
 import org.springframework.stereotype.Service;
 import pl.simo333.app.dao.BookDao;
 import pl.simo333.app.domain.Book;
+import pl.simo333.app.repository.BookRepository;
 
 import java.util.List;
 
@@ -10,9 +11,11 @@ import java.util.List;
 public class BookService {
 
     private final BookDao bookDao;
+    private final BookRepository bookRepository;
 
-    public BookService(BookDao bookDao) {
+    public BookService(BookDao bookDao, BookRepository bookRepository) {
         this.bookDao = bookDao;
+        this.bookRepository = bookRepository;
     }
 
     public Book saveBook(Book book) {
@@ -25,7 +28,7 @@ public class BookService {
     }
 
     public List<Book> findAll() {
-        return bookDao.findAll();
+        return bookRepository.findAll();
     }
 
     public List<Book> findAllByRating(double rating) {
