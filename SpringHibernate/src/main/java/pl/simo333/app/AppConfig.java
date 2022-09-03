@@ -10,7 +10,6 @@ import org.springframework.http.converter.StringHttpMessageConverter;
 import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.orm.jpa.LocalEntityManagerFactoryBean;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
-import org.springframework.validation.Validator;
 import org.springframework.validation.beanvalidation.LocalValidatorFactoryBean;
 import org.springframework.web.servlet.LocaleContextResolver;
 import org.springframework.web.servlet.config.annotation.DefaultServletHandlerConfigurer;
@@ -23,6 +22,7 @@ import pl.simo333.app.converter.BookConverter;
 import pl.simo333.app.converter.PublisherConverter;
 
 import javax.persistence.EntityManagerFactory;
+import javax.validation.Validator;
 import java.nio.charset.StandardCharsets;
 import java.util.List;
 import java.util.Locale;
@@ -58,8 +58,7 @@ public class AppConfig implements WebMvcConfigurer {
 
     @Bean
     public JpaTransactionManager transactionManager(EntityManagerFactory entityManagerFactory) {
-        JpaTransactionManager jpaTransactionManager = new JpaTransactionManager(entityManagerFactory);
-        return jpaTransactionManager;
+        return new JpaTransactionManager(entityManagerFactory);
     }
 
     @Override

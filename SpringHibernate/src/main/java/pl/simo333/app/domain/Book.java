@@ -1,6 +1,9 @@
 package pl.simo333.app.domain;
 
+import org.hibernate.validator.constraints.Range;
+
 import javax.persistence.*;
+import javax.validation.constraints.*;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
@@ -12,19 +15,27 @@ public class Book {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @Size(min = 5)
     private String title;
+    @Range(min = 1, max = 10)
     private double rating;
+    @Size(max = 600)
     private String description;
-    @ManyToOne(fetch = FetchType.EAGER)
+    @NotNull
+    @ManyToOne
     private Publisher publisher;
-    @ManyToMany
+    @NotEmpty
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "book_authors")
     private Set<Author> authors = new HashSet<>();
+    @Min(2)
+    private int pages;
 
-    public Book(String title, double rating, String description) {
+    public Book(String title, double rating, String description, int pages) {
         this.title = title;
         this.rating = rating;
         this.description = description;
+        this.pages = pages;
     }
 
     public Book() {
@@ -80,6 +91,14 @@ public class Book {
         authors.add(author);
     }
 
+    public int getPages() {
+        return pages;
+    }
+
+    public void setPages(int pages) {
+        this.pages = pages;
+    }
+
     @Override
     public String toString() {
         return "Book{" +
@@ -87,7 +106,7 @@ public class Book {
                 ", title='" + title + '\'' +
                 ", rating=" + rating +
                 ", description='" + description + '\'' +
-                ", publisher=" + publisher +
+                ", pages=" + pages +
                 '}';
     }
 
