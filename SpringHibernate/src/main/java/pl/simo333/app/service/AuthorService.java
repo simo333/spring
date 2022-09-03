@@ -16,7 +16,11 @@ public class AuthorService {
     }
 
     public Author saveAuthor(Author author) {
-        authorDao.saveAuthor(author);
+        if (author.getId() != null) {
+            authorDao.update(author);
+        } else {
+            authorDao.saveAuthor(author);
+        }
         return author;
     }
 
