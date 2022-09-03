@@ -16,7 +16,11 @@ public class PublisherService {
     }
 
     public Publisher savePublisher(Publisher publisher) {
-        publisherDao.savePublisher(publisher);
+        if (publisher.getId() != null) {
+            publisherDao.update(publisher);
+        } else {
+            publisherDao.savePublisher(publisher);
+        }
         return publisher;
     }
 
