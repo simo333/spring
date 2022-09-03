@@ -6,6 +6,7 @@ import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 import java.util.List;
+import java.util.Objects;
 
 @Entity
 @Table(name = "authors")
@@ -22,8 +23,6 @@ public class Author {
     private String pesel;
     @Email
     private String email;
-    @ManyToMany(mappedBy = "authors")
-    private List<Book> books;
 
     public Long getId() {
         return id;
@@ -50,14 +49,6 @@ public class Author {
             throw new IllegalStateException("'firstName' or 'lastName' attributes has not been set.");
         }
         return firstName + " " + lastName;
-    }
-
-    public List<Book> getBooks() {
-        return books;
-    }
-
-    public void setBooks(List<Book> books) {
-        this.books = books;
     }
 
     public void setId(Long id) {
@@ -89,5 +80,19 @@ public class Author {
                 ", pesel='" + pesel + '\'' +
                 ", email='" + email + '\'' +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (o instanceof Author author) {
+            return Objects.equals(id, author.id);
+        } else {
+            return false;
+        }
+    }
+
+    @Override
+    public int hashCode() {
+        return id != null ? id.hashCode() : 0;
     }
 }

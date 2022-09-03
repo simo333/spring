@@ -21,17 +21,6 @@ public class Publisher {
     private String nip;
     @REGON
     private String regon;
-    @OneToMany(mappedBy = "publisher")
-    private List<Book> books = new ArrayList<>();
-
-    public void addBook(Book book) {
-        books.add(book);
-        book.setPublisher(this);
-    }
-    public void removeBook(Book book) {
-        books.remove(book);
-        book.setPublisher(null);
-    }
 
     public Publisher() {
     }
@@ -58,14 +47,6 @@ public class Publisher {
         this.name = name;
     }
 
-    public List<Book> getBooks() {
-        return books;
-    }
-
-    public void setBooks(List<Book> books) {
-        this.books = books;
-    }
-
     public String getNip() {
         return nip;
     }
@@ -89,7 +70,6 @@ public class Publisher {
                 ", name='" + name + '\'' +
                 ", nip='" + nip + '\'' +
                 ", regon='" + regon + '\'' +
-                ", books=" + books +
                 '}';
     }
 }

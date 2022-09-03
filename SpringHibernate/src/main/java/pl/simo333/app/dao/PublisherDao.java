@@ -34,10 +34,7 @@ public class PublisherDao {
 
 
     public void delete(Publisher publisher) {
-        Publisher attached = entityManager.merge(publisher);
-        attached.getBooks().forEach(b -> b.setPublisher(null));
-
-        entityManager.remove(entityManager.contains(attached) ?
-                attached : entityManager.merge(attached));
+        entityManager.remove(entityManager.contains(publisher) ?
+                publisher : entityManager.merge(publisher));
     }
 }

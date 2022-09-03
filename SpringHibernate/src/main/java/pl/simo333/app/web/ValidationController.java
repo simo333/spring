@@ -36,6 +36,7 @@ public class ValidationController {
         model.addAttribute("violations", violations);
         return "validator";
     }
+
     @GetMapping("/author")
     public String validateAuthor(Model model) {
         Author author = new Author();
