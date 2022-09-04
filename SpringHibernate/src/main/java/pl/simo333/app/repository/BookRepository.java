@@ -1,5 +1,8 @@
 package pl.simo333.app.repository;
 
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.jaxb.SpringDataJaxb;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -38,4 +41,12 @@ public interface BookRepository extends JpaRepository<Book, Long> {
 
     Optional<Book> findFirstByCategoryOrderByTitle(Category category);
 
+    @Query("select b from Book b where b.rating between ?1 and ?2")
+    List<Book> queryByRatingBetween(double rangeLow, double rangeHigh);
+
+    @Query("select b from Book b where b.publisher = ?1")
+    List<Book> queryByPublisher(Publisher publisher);
+
+    @Query("select b from Book b where b.category = ?1 order by b.title")
+    Optional<Book> queryFirstByCategory(Category category);
 }
