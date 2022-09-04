@@ -47,6 +47,6 @@ public interface BookRepository extends JpaRepository<Book, Long> {
     @Query("select b from Book b where b.publisher = ?1")
     List<Book> queryByPublisher(Publisher publisher);
 
-    @Query("select b from Book b where b.category = ?1 order by b.title")
+    @Query(nativeQuery = true, value = "select * from books where category_id = ?1 order by title")
     Optional<Book> queryFirstByCategory(Category category);
 }

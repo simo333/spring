@@ -6,6 +6,12 @@
 </head>
 <body>
 <jsp:include page="/WEB-INF/views/menu.jsp"/>
+<form>
+  Input: <input type="text" name="lastName">
+  Page size: <input type="number" step="1" min="1" max="30" name="pageSize" value="20">
+  <button type="submit">Search</button>
+</form>
+
 <table>
   <tr>
     <th>First name</th>

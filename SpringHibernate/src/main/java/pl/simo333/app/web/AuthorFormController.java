@@ -1,5 +1,7 @@
 package pl.simo333.app.web;
 
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -35,10 +37,13 @@ public class AuthorFormController {
 
 
     @GetMapping("/list")
-    public String listBooks(@RequestParam(name = "lastName", required = false) String lastName,
+    public String listAuthors(@RequestParam(name = "lastName", required = false) String lastName,
+                              @RequestParam(name = "pageSize", required = false, defaultValue = "20") int pageSize,
                             Model model) {
         if(lastName != null) {
-            model.addAttribute("authors", authorRepository.findAllByLastName(lastName));
+
+            model.addAttribute("authors",
+                    authorRepository.findAllByLastName(lastName, Pageable.ofSize(pageSize)).getContent());
         } else {
             model.addAttribute("authors", authorService.findAll());
         }
