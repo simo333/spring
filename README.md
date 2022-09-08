@@ -17,3 +17,8 @@
 * DB Relations
 * JPQL
 * Forms binding
+* Detailed queries @Query
+
+### Hibernate Validator
+
+### Spring Data
