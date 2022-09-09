@@ -25,7 +25,7 @@ public class CategoryController {
     }
 
     @GetMapping("/add")
-    public String addCategory(Model model) {
+    public String addCategoryForm(Model model) {
         model.addAttribute("category", new Category());
         return "category/add";
     }
@@ -37,7 +37,7 @@ public class CategoryController {
     }
 
     @GetMapping("/edit/{id}")
-    public String editCategory(Model model, @PathVariable Long id) {
+    public String editCategoryForm(Model model, @PathVariable Long id) {
         model.addAttribute("category", categoryDao.findById(id));
         return "category/edit";
     }
