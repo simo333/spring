@@ -33,25 +33,25 @@ public class CategoryController {
     @PostMapping("/add")
     public String addCategory(Category category) {
         categoryDao.save(category);
-        return "category/add";
+        return "redirect:/categories/category/all";
     }
 
     @GetMapping("/edit/{id}")
     public String editCategory(Model model, @PathVariable Long id) {
         model.addAttribute("category", categoryDao.findById(id));
-        return "category/add";
+        return "category/edit";
     }
 
     @PostMapping("/edit")
     public String editCategory(Category category) {
         categoryDao.update(category);
-        return "category/add";
+        return "redirect:/categories/category/all";
     }
 
     @GetMapping("/delete/{id}")
     public String deleteCategory(@PathVariable Long id) {
         categoryDao.delete(categoryDao.findById(id));
-        return "category/add";
+        return "redirect:/categories/category/all";
     }
 
 }

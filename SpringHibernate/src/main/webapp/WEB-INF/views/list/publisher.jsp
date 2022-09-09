@@ -2,7 +2,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Book list</title>
+    <title>Publisher list</title>
 </head>
 <body>
 <jsp:include page="/WEB-INF/views/menu.jsp"/>
