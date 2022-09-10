@@ -2,6 +2,7 @@ package pl.simo333.domain;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -42,12 +43,12 @@ public class Article {
 
     @PrePersist
     public void prePersist() {
-        created = LocalDateTime.now();
+        created = LocalDateTime.now(ZoneId.systemDefault());
     }
 
     @PreUpdate
     public void preUpdate() {
-        updated = LocalDateTime.now();
+        updated = LocalDateTime.now(ZoneId.systemDefault());
     }
 
     public Long getId() {

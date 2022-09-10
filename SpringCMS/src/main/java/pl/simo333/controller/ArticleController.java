@@ -2,21 +2,28 @@ package pl.simo333.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import pl.simo333.domain.Article;
+import pl.simo333.domain.Author;
+import pl.simo333.domain.Category;
 import pl.simo333.repository.ArticleDao;
+import pl.simo333.repository.AuthorDao;
+import pl.simo333.repository.CategoryDao;
+
+import java.util.List;
 
 @Controller
 @RequestMapping("/articles")
 public class ArticleController {
 
     private final ArticleDao articleDao;
+    private final AuthorDao authorDao;
+    private final CategoryDao categoryDao;
 
-    public ArticleController(ArticleDao articleDao) {
+    public ArticleController(ArticleDao articleDao, AuthorDao authorDao, CategoryDao categoryDao) {
         this.articleDao = articleDao;
+        this.authorDao = authorDao;
+        this.categoryDao = categoryDao;
     }
 
     @GetMapping
@@ -29,6 +36,11 @@ public class ArticleController {
     public String addArticleForm(Model model) {
         model.addAttribute("article", new Article());
         return "article/add";
+    }
+    @GetMapping("/get/{id}")
+    public String showArticleDetails(Model model, @PathVariable Long id) {
+        model.addAttribute("article", articleDao.findById(id));
+        return "article/details";
     }
 
     @PostMapping("/add")
@@ -55,5 +67,14 @@ public class ArticleController {
         return "redirect:/articles";
     }
 
+    @ModelAttribute("authors")
+    public List<Author> supplyAuthors() {
+        return authorDao.findAll();
+    }
+
+    @ModelAttribute("categories")
+    public List<Category> supplyCategories() {
+        return categoryDao.findAll();
+    }
 
 }

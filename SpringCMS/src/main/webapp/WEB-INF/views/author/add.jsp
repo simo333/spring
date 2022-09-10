@@ -6,7 +6,7 @@
 </head>
 <body>
 <form:form method="post" modelAttribute="author">
-    <legend>New category:</legend>
+    <legend>New author:</legend>
     <form:hidden path="id" value="${author.id}"/>
     First name: <form:input path="firstName" value="${author.firstName}"/><br>
     Last name: <form:input path="lastName" value="${author.lastName}"/><br>

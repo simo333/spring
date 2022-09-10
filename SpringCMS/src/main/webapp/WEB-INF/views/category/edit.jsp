@@ -6,7 +6,7 @@
 </head>
 <body>
 <form:form method="post" modelAttribute="category" action="/categories/edit">
-    <legend>New category:</legend>
+    <legend>Edit category:</legend>
     <form:hidden path="id" value="${category.id}"/>
     Name: <form:input path="name" value="${category.name}"/><br>
     Description: <form:input path="description" value="${category.description}"/><br>

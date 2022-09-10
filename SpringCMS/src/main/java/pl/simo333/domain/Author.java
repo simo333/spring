@@ -54,6 +54,10 @@ public class Author {
         this.articles = articles;
     }
 
+    public String getFullName() {
+        return firstName + " " + lastName;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

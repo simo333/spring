@@ -14,6 +14,9 @@ import org.springframework.web.servlet.config.annotation.DefaultServletHandlerCo
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.ViewResolverRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+import pl.simo333.converters.AuthorConverter;
+import pl.simo333.converters.CategoryConverter;
+import pl.simo333.converters.LocalDateTimeConverter;
 
 import javax.persistence.EntityManagerFactory;
 import java.nio.charset.StandardCharsets;
@@ -50,13 +53,29 @@ public class AppConfig implements WebMvcConfigurer {
 
     @Bean
     public JpaTransactionManager transactionManager(EntityManagerFactory entityManagerFactory) {
-        JpaTransactionManager jpaTransactionManager = new JpaTransactionManager(entityManagerFactory);
-        return jpaTransactionManager;
+        return new JpaTransactionManager(entityManagerFactory);
     }
 
     @Override
     public void addFormatters(FormatterRegistry registry) {
-//        registry.addConverter(publisherConverter());
+        registry.addConverter(getAuthorConverter());
+        registry.addConverter(getLocalDateTimeConverter());
+        registry.addConverter(getCategoryConverter());
+    }
+
+    @Bean
+    public AuthorConverter getAuthorConverter() {
+        return new AuthorConverter();
+    }
+
+    @Bean
+    public CategoryConverter getCategoryConverter() {
+        return new CategoryConverter();
+    }
+
+    @Bean
+    public LocalDateTimeConverter getLocalDateTimeConverter() {
+        return new LocalDateTimeConverter();
     }
 
 }
