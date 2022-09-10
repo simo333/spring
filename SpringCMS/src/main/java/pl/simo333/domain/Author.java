@@ -1,6 +1,8 @@
 package pl.simo333.domain;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -10,7 +12,9 @@ public class Author {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @NotBlank
     private String firstName;
+    @NotBlank
     private String lastName;
     @OneToMany(mappedBy = "author")
     private List<Article> articles = new ArrayList<>();

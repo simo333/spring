@@ -1,7 +1,11 @@
 package pl.simo333.domain;
 
 import javax.persistence.*;
-import java.util.*;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
+import java.util.HashSet;
+import java.util.Objects;
+import java.util.Set;
 
 @Entity
 @Table(name = "categories")
@@ -9,6 +13,8 @@ public class Category {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @NotNull
+    @Min(5)
     private String name;
     private String description;
     @ManyToMany(mappedBy = "categories")

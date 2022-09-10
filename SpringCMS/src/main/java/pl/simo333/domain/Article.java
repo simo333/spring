@@ -1,6 +1,9 @@
 package pl.simo333.domain;
 
 import javax.persistence.*;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.util.HashSet;
@@ -13,14 +16,20 @@ public class Article {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @Column(length = 200)
+    @NotNull
+    @Size(min = 2, max = 200)
     private String title;
+    @NotNull
     @ManyToOne
     @JoinColumn(name = "author")
     private Author author;
+    @NotNull
+    @Min(1)
     @ManyToMany
     @JoinTable(name = "article_categories")
     private Set<Category> categories = new HashSet<>();
+    @NotNull
+    @Size(min = 2, max = 500)
     private String content;
     private LocalDateTime created;
     private LocalDateTime updated;
