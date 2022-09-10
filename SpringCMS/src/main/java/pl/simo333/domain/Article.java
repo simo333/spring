@@ -3,9 +3,9 @@ package pl.simo333.domain;
 import javax.persistence.*;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
 import java.util.Objects;
+import java.util.Set;
 
 @Entity
 @Table(name = "articles")
@@ -16,11 +16,11 @@ public class Article {
     @Column(length = 200)
     private String title;
     @ManyToOne
-    @JoinColumn(name = "author_id")
+    @JoinColumn(name = "author")
     private Author author;
     @ManyToMany
     @JoinTable(name = "article_categories")
-    private List<Category> categories = new ArrayList<>();
+    private Set<Category> categories = new HashSet<>();
     private String content;
     private LocalDateTime created;
     private LocalDateTime updated;
@@ -35,10 +35,12 @@ public class Article {
 
     public void addCategory(Category category) {
         categories.add(category);
+        category.getArticles().add(this);
     }
 
     public void removeCategory(Category category) {
         categories.remove(category);
+        category.getArticles().remove(this);
     }
 
     @PrePersist
@@ -75,11 +77,11 @@ public class Article {
         this.author = author;
     }
 
-    public List<Category> getCategories() {
+    public Set<Category> getCategories() {
         return categories;
     }
 
-    public void setCategories(List<Category> categories) {
+    public void setCategories(Set<Category> categories) {
         this.categories = categories;
     }
 

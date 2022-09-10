@@ -1,6 +1,8 @@
 package pl.simo333.repository;
 
+import org.hibernate.Hibernate;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Propagation;
 import pl.simo333.domain.Author;
 import pl.simo333.domain.Category;
 
@@ -33,7 +35,13 @@ public class CategoryDao {
     }
 
     public void delete(Category category) {
-        entityManager.remove(entityManager.contains(category) ?
-                category : entityManager.merge(category));
+        Category attached = entityManager
+                .createQuery("SELECT c FROM Category c JOIN FETCH c.articles WHERE c.id = ?1", Category.class)
+                .setParameter(1, category.getId())
+                .getSingleResult();
+        attached.getArticles().forEach(article -> article.removeCategory(category));
+
+        entityManager.remove(entityManager.contains(attached) ?
+                attached : entityManager.merge(attached));
     }
 }

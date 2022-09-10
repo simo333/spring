@@ -1,7 +1,7 @@
 package pl.simo333.domain;
 
 import javax.persistence.*;
-import java.util.Objects;
+import java.util.*;
 
 @Entity
 @Table(name = "categories")
@@ -11,6 +11,8 @@ public class Category {
     private Long id;
     private String name;
     private String description;
+    @ManyToMany(mappedBy = "categories")
+    private Set<Article> articles = new HashSet<>();
 
 
     public Long getId() {
@@ -35,6 +37,14 @@ public class Category {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public Set<Article> getArticles() {
+        return articles;
+    }
+
+    public void setArticles(Set<Article> articles) {
+        this.articles = articles;
     }
 
     @Override
