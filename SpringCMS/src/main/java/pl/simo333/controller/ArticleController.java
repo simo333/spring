@@ -39,7 +39,7 @@ public class ArticleController {
     }
     @GetMapping("/get/{id}")
     public String showArticleDetails(Model model, @PathVariable Long id) {
-        model.addAttribute("article", articleDao.findById(id));
+        model.addAttribute("article", articleDao.findByIdWithCategories(id));
         return "article/details";
     }
 

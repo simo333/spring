@@ -16,6 +16,6 @@
             </form:select><br>
     <button type="submit">Edit</button>
 </form:form>
-<a href="/authors"><button>Back to list</button></a>
+<a href="/articles"><button>Back to list</button></a>
 </body>
 </html>

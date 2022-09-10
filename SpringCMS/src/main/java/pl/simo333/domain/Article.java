@@ -16,7 +16,7 @@ public class Article {
     @Column(length = 200)
     private String title;
     @ManyToOne
-    @JoinColumn(name = "author")
+    @JoinColumn(name = "author_id")
     private Author author;
     @ManyToMany
     @JoinTable(name = "article_categories")

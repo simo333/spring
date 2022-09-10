@@ -17,6 +17,6 @@
     Category: <form:checkboxes path="categories" items="${categories}" itemLabel="name" itemValue="id" element="div"/><br>
     <button type="submit">Save</button>
 </form:form>
-<a href="/authors"><button>Back to list</button></a>
+<a href="/articles"><button>Back to list</button></a>
 </body>
 </html>

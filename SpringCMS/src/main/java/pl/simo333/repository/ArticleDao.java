@@ -1,5 +1,6 @@
 package pl.simo333.repository;
 
+import org.hibernate.Hibernate;
 import org.springframework.stereotype.Repository;
 import pl.simo333.domain.Article;
 import pl.simo333.domain.Author;
@@ -22,6 +23,12 @@ public class ArticleDao {
 
     public Article findById(long id) {
         return entityManager.find(Article.class, id);
+    }
+
+    public Article findByIdWithCategories(long id) {
+        Article article = entityManager.find(Article.class, id);
+        Hibernate.initialize(article.getCategories());
+        return article;
     }
 
     public List<Article> findAll() {
