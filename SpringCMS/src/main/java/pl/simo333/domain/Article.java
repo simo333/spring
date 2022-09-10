@@ -1,7 +1,6 @@
 package pl.simo333.domain;
 
 import javax.persistence.*;
-import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.time.LocalDateTime;
@@ -24,7 +23,7 @@ public class Article {
     @JoinColumn(name = "author")
     private Author author;
     @NotNull
-    @Min(1)
+    @Size(min = 1)
     @ManyToMany
     @JoinTable(name = "article_categories")
     private Set<Category> categories = new HashSet<>();

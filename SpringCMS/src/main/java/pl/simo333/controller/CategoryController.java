@@ -2,12 +2,15 @@ package pl.simo333.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import pl.simo333.domain.Category;
 import pl.simo333.repository.CategoryDao;
+
+import javax.validation.Valid;
 
 @Controller
 @RequestMapping("/categories")
@@ -31,7 +34,10 @@ public class CategoryController {
     }
 
     @PostMapping("/add")
-    public String addCategory(Category category) {
+    public String addCategory(@Valid Category category, BindingResult result) {
+        if(result.hasErrors()) {
+            return "category/add";
+        }
         categoryDao.save(category);
         return "redirect:/categories";
     }
@@ -43,7 +49,10 @@ public class CategoryController {
     }
 
     @PostMapping("/edit")
-    public String editCategory(Category category) {
+    public String editCategory(@Valid Category category, BindingResult result) {
+        if(result.hasErrors()) {
+            return "category/edit";
+        }
         categoryDao.update(category);
         return "redirect:/categories";
     }

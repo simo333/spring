@@ -3,12 +3,19 @@
 <html>
 <head>
     <title>Edit Category</title>
+    <style>
+        .error {
+            font-weight: bold;
+            color: red;
+            padding-left: 3px;
+        }
+    </style>
 </head>
 <body>
 <form:form method="post" modelAttribute="category" action="/categories/edit">
     <legend>Edit category:</legend>
     <form:hidden path="id" value="${category.id}"/>
-    Name: <form:input path="name" value="${category.name}"/><br>
+    Name: <form:input path="name" value="${category.name}"/><form:errors path="name" cssClass="error"/><br>
     Description: <form:input path="description" value="${category.description}"/><br>
     <button type="submit">Edit</button>
 </form:form>

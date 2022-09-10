@@ -1,8 +1,8 @@
 package pl.simo333.domain;
 
 import javax.persistence.*;
-import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
@@ -14,7 +14,7 @@ public class Category {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @NotNull
-    @Min(5)
+    @Size(min = 5, max = 40)
     private String name;
     private String description;
     @ManyToMany(mappedBy = "categories")
