@@ -24,7 +24,7 @@
             <td><c:out value="${a.author.fullName }"/></td>
             <td><a href="<c:url value="/articles/get/${a.id}"/>">DETAILS</a>
                 <a href="<c:url value="/articles/edit/${a.id}"/>">EDIT</a>
-            <td><a href="<c:url value="/articles/delete/${a.id}"/>">DELETE</a>
+                <a href="<c:url value="/articles/delete/${a.id}"/>">DELETE</a>
             </td>
         </tr>
     </c:forEach>

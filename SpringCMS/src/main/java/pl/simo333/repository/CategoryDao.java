@@ -1,18 +1,12 @@
 package pl.simo333.repository;
 
-import org.hibernate.Hibernate;
-import org.hibernate.validator.internal.engine.ConstraintViolationImpl;
 import org.springframework.stereotype.Repository;
-import org.springframework.transaction.annotation.Propagation;
-import pl.simo333.domain.Author;
 import pl.simo333.domain.Category;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.transaction.Transactional;
-import javax.validation.ConstraintViolationException;
 import java.util.List;
-import java.util.Set;
 
 @Repository
 @Transactional
@@ -43,6 +37,5 @@ public class CategoryDao {
             entityManager.remove(entityManager.contains(attached) ?
                     attached : entityManager.merge(attached));
         }
-        throw new IllegalStateException("Cannot remove due to articles attached.");
     }
 }
